@@ -82,7 +82,6 @@ impl SimulationManager {
             .activate_agent(admin, B160::from_low_u64_be(1))
             .unwrap(); // This unwrap should never fail.
         simulation_manager.environment.run();
-        simulation_manager.auto_deploy();
 
         simulation_manager
     }

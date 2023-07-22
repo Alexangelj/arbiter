@@ -44,6 +44,7 @@ impl SimulationEnvironment {
         let db = CacheDB::new(EmptyDB {});
         evm.env.cfg.limit_contract_code_size = Some(0x100000); // This is a large contract size limit, beware!
         evm.env.block.gas_limit = U256::MAX;
+        evm.env.block.timestamp = U256::from(1);
         evm.database(db);
         let transaction_channel = unbounded::<(TxEnv, Sender<ExecutionResult>)>();
         Self {

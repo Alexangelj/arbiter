@@ -196,7 +196,11 @@ pub trait Agent: Identifiable {
         function_name: &str,
         args: Vec<Token>,
     ) -> Result<ExecutionResult, Box<dyn Error>> {
-        println!("function name: {}", function_name);
+        // gets the "VERBOSE_CALLS" environment variable and prints the function name if its set
+        if std::env::var("VERBOSE_CALLS").is_ok() {
+            println!("function name: {}", function_name);
+        }
+
         let function = contract.base_contract.abi().function(function_name)?;
         let call_data = function.encode_input(&args)?.into_iter().collect();
         let tx = self.build_call_transaction(contract.address, call_data);

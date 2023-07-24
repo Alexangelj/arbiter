@@ -46,6 +46,7 @@ impl SimulationEnvironment {
         evm.env.block.gas_limit = U256::MAX;
         evm.env.block.timestamp = U256::from(1);
         evm.database(db);
+        println!("evm env {:?}", evm.env);
         let transaction_channel = unbounded::<(TxEnv, Sender<ExecutionResult>)>();
         Self {
             evm,

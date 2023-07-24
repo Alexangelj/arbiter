@@ -83,7 +83,7 @@ fn execute(evm: &mut EVM<CacheDB<EmptyDB>>, tx: TxEnv) -> ExecutionResult {
     match evm.transact_commit() {
         Ok(val) => val,
         // URGENT: change this to a custom error
-        Err(_) => panic!("failed"),
+        Err(e) => panic!("{:?}", e),
     }
 }
 

@@ -42,7 +42,7 @@ impl SimulationEnvironment {
     pub(crate) fn new() -> Self {
         let mut evm = EVM::new();
         let db = CacheDB::new(EmptyDB {});
-        evm.env.cfg.limit_contract_code_size = Some(0x7000); // This is a large contract size limit, beware!
+        evm.env.cfg.limit_contract_code_size = Some(0x700000); // This is a large contract size limit, beware!
         evm.env.block.gas_limit = U256::MAX;
         evm.env.block.timestamp = U256::from(1);
         evm.database(db);

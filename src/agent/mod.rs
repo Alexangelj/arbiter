@@ -269,7 +269,9 @@ pub trait Agent: Identifiable {
             nonce: None,
             access_list: Vec::new(),
         };
-        println!("tx data length: {}", usize::from(deploy_txenv.data.len()));
+        if std::env::var("VERBOSE_CALLS").is_ok() {
+            println!("tx data length: {}", usize::from(deploy_txenv.data.len()));
+        }
         self.transaction_sender()
             .send((deploy_txenv, self.result_channel().0))?;
         let execution_result = self.result_channel().1.recv().unwrap(); // TODO: bad error handling here.
